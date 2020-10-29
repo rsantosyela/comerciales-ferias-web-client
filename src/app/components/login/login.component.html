@@ -1,0 +1,16 @@
+<body id="login-body">
+    <h1>PANEL DE GESTIÓN</h1>
+    <div>
+        <form id="login-form" #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)" autocomplete="off">
+
+            <label for="email">Correo electrónico*</label><br>
+            <input type="text" name="email" #email="ngModel" [(ngModel)]="login.email" (keydown)="toggleErrorMessage(false)" required>
+            
+            <label for="password">Contraseña*</label><br>
+            <input type="password" name="password" #password="ngModel" [(ngModel)]="login.password" (keydown)="toggleErrorMessage(false)" required>
+            <p id="error-message" *ngIf="showErrorMessage">{{errorMessage}}</p> 
+            
+            <input type="submit" value="Iniciar sesión">
+        </form>
+    </div>  
+</body>

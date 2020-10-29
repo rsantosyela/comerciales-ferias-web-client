@@ -1,0 +1,94 @@
+<app-header></app-header>
+
+<div class="component-body">
+
+    <h1 class="section-title">Gestión de ferias</h1>
+
+    <button class="btn-new" (click)="startNewFairModal()">Nueva feria</button>
+
+    <ng2-smart-table class="form" [settings]="settings" [source]="fairs" (custom)="customActions($event)"></ng2-smart-table>
+
+</div>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="createFairModal" (onCloseFinished)="reload()">
+            
+    <div class="modal-box">
+
+        <h2>Nueva feria</h2>
+        <p>Indroduzca los datos de la nueva feria.</p>
+
+        <form [formGroup]="fairForm" #profFom="ngForm" (ngSubmit)="fairForm.valid && createFair()">
+
+            <label>
+                Name:
+                <input type="text" [formControl]="fairForm.controls.name" formControlName="name" required>
+                <small class="form-validation" *ngIf="(fairForm.controls.name.dirty || fairForm.controls.name.touched) && fairForm.controls.name.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Localización:
+                <input type="text" [formControl]="fairForm.controls.location" formControlName="location" required>
+                <small class="form-validation" *ngIf="(fairForm.controls.location.dirty || fairForm.controls.location.touched) && fairForm.controls.location.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+            
+            <label>
+                Descripción:
+                <input type="text" [formControl]="fairForm.controls.description" formControlName="description" required>
+                <small class="form-validation" *ngIf="(fairForm.controls.location.dirty || fairForm.controls.location.touched) && fairForm.controls.location.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+      
+            <input type="submit" value="Editar usuario">
+
+        </form>
+
+    </div>
+    
+</ngx-smart-modal>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="updateFairModal" (onCloseFinished)="reload()">
+     
+    <div class="modal-box">
+
+        <h2>Editar feria</h2>
+        <p>Indroduzca los datos de la feria que quiera modificar.</p>
+
+        <form [formGroup]="fairForm" #profFom="ngForm" (ngSubmit)="fairForm.valid && updateFair()">
+
+            <label>
+                Name:
+                <input type="text" [formControl]="fairForm.controls.name" formControlName="name" required>
+                <small class="form-validation" *ngIf="(fairForm.controls.name.dirty || fairForm.controls.name.touched) && fairForm.controls.name.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Localización:
+                <input type="text" [formControl]="fairForm.controls.location" formControlName="location" required>
+                <small class="form-validation" *ngIf="(fairForm.controls.location.dirty || fairForm.controls.location.touched) && fairForm.controls.location.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+            
+            <label>
+                Descripción:
+                <input type="text" [formControl]="fairForm.controls.description" formControlName="description" required>
+                <small class="form-validation" *ngIf="(fairForm.controls.location.dirty || fairForm.controls.location.touched) && fairForm.controls.location.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+      
+            <input type="submit" value="Editar usuario">
+
+        </form>
+
+    </div>
+
+</ngx-smart-modal>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="deleteFairModal" (onCloseFinished)="reload()">
+
+    <div class="modal-box">  
+
+        <h2>Eliminar feria</h2>
+        <p>¿Seguro que desea eliminar esta feria?</p>
+        <button class="confirm-modal-btn" (click)="deleteFair(fair._id)">Aceptar</button>
+        <button class="cancel-modal-btn" (click)="closeDeleteFairModal()">Cancelar</button>
+
+    </div>
+
+</ngx-smart-modal>

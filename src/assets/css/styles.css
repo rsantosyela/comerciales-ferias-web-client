@@ -1,0 +1,325 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@import "~ngx-smart-modal/ngx-smart-modal";
+
+/**
+@import "../../app/app.component";
+**/
+
+
+
+
+/** Login Component **/
+
+#login-body{
+    height: calc(100vh - 60px);
+    width: calc(100% - 60px);
+    padding: 30px;
+    background-color: cornflowerblue;
+}
+
+#login-body h1{
+   margin-top: 200px;
+   text-align: center;
+}
+
+#login-body div{
+    background: white;
+    width: 350px;
+    margin: auto;
+    padding: 45px 30px;
+    border: 1px solid rgb(137, 137, 187);
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px rgba(31, 30, 78, 0.3);
+}
+
+#login-form label{
+    font-weight: bold;
+    text-align: left;
+    margin: 0;  
+}
+
+#login-form input[type="text"],
+[type="password"]{
+    font-size: 1rem;
+    background: white;
+    width: calc(100% - 28px);
+    padding: 14px;
+    margin-top: 5px;
+    margin-bottom: 17px;
+    border: 1px solid rgb(137, 137, 187);
+    border-radius: 5px;
+}
+
+#login-form input[type="submit"]{
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+    margin-top: 15px;
+    padding: 17px;
+    background: rgb(42, 42, 219);
+    border: none;
+    border-radius: 5px;
+}
+
+#error-message{
+    color: darkred;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    display: block;
+}
+
+/* Body */
+
+body{
+    background:white;
+    margin: 0 auto;
+}
+
+.component-body{
+    background:white;
+    margin: 0 auto;
+    padding: 120px 65px 0 65px;
+}
+
+.form{
+    width: 100%;
+} 
+
+/* Header */
+
+header{
+    height: 58px;
+    width: calc(100% - 20px);
+    padding: 10px;  
+    background: cornflowerblue;
+    position: fixed;
+    top: 0;    
+}
+
+header h1{
+    color: white;
+    margin: 11px 0 0 35px;
+    float: left;
+}
+
+.close-session-button{
+    color: white;
+    font-weight: bold;
+    width: 10%;
+    height: 100%;
+    background: red;
+    padding: 1%;
+    border: none;
+    border-radius: 5px;
+    float: right;
+    cursor: pointer;
+}
+
+/* Nav */
+
+.header-nav{
+    width: 100%;
+    height: 25px;
+    background: rgb(59, 101, 180);
+    padding-left: 45px;
+    padding-top: 4px;
+    position: fixed;
+    top: 78px;
+    width: 100%; 
+    box-shadow: 0 3px 3px 1px rgba(65, 46, 46, 0.3);
+} 
+
+.header-nav a {
+    color: white;
+    font-size: 0.8em;
+    padding: 7px 20px;
+    text-decoration: none;
+    transition: all 300ms;   
+} 
+
+nav a:hover,
+.actived {
+    background: black;
+}
+
+/** Sections Title **/
+
+.section-title{
+    float: left;
+}
+
+/** Smart Table Actions **/
+
+.btn-new{
+    color: white;
+    font-size: 1.1rem;
+    font-style: normal;
+    background-color: cornflowerblue;
+    margin-top: 20px;
+    margin-left: 30px;
+    padding: 10px 15px;
+    border: solid 2px white;
+    border-radius: 5px;
+    float: right;
+}
+
+.btn-reset{
+    color: white;
+    font-style: normal;
+    background-color: cornflowerblue;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.btn-edit{
+    color: white;
+    font-style: normal;
+    background-color: cornflowerblue;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.btn-delete{
+    color: white;
+    font-style: normal;
+    background-color: red;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border-radius: 3px;  
+}
+
+/** Modals **/
+
+.modal-box{
+    padding: 15px;
+}
+
+.modal-box label{
+    font-weight: bold;
+    text-align: left;
+    margin: 0; 
+}
+
+.modal-box input[type="text"], 
+[type="email"],
+[type="password"],
+[type="number"]{
+    font-size: 1rem;
+    background: white;
+    width: calc(100% - 28px);
+    padding: 14px;
+    margin-top: 5px;
+    margin-bottom: 17px;
+    border: 1px solid rgb(137, 137, 187);
+    border-radius: 5px;
+}
+
+.modal-box input[type="submit"]{
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+    margin-top: 15px;
+    padding: 17px;
+    background: cornflowerblue;
+    border: none;
+    border-radius: 5px;
+}
+
+.confirm-modal-btn{
+    font-size: 1rem;
+    color: white;
+    width: calc(50% - 7px);
+    margin-top: 15px;
+    margin-right: 7px;
+    padding: 17px;
+    background:red;
+    border: none;
+    border-radius: 5px;
+}
+
+.cancel-modal-btn{
+    font-size: 1rem;
+    color: white;
+    width: calc(50% - 7px);
+    margin-top: 15px;
+    margin-left: 7px;
+    padding: 17px;
+    background:cornflowerblue;
+    border: none;
+    border-radius: 5px;
+}
+
+/** NG-Select **/
+
+.ng-select.custom .ng-select-container{
+    font-size: 1rem;
+    color: black;
+    background: white;
+    width: 100%;
+    padding: 23.5px 5px;
+    margin-top: 5px;
+    border: 1px solid rgb(137, 137, 187);
+    border-radius: 5px;
+}
+
+/** Form Validation **/
+.form-validation{
+    color: red;
+    position: relative;
+    top: -15px;
+    margin: 0;
+    z-index: 1000;
+}
+
+/* Navbar */
+/**
+
+/** Fonts **/
+*{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+}
+
+/** Fairs **/
+
+.fair-box{
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 10px;
+}
+
+.fair-box h1{
+    margin: 0;
+}
+
+/** Contacts **/
+
+#button-csv {
+    color: white;
+    background-color: cornflowerblue;
+    margin: 22px 0 0 30px;
+    float: right;
+    padding: 10px 15px;
+    border: 2px solid white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+#button-csv:hover {
+    background-color: rgb(59, 101, 180);
+}
+
+#header-contacts{
+    float: left;
+}
+
+
+
+

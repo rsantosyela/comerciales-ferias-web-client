@@ -1,0 +1,69 @@
+
+<table *ngIf="!showEditForm">
+    <tr>
+        <td>{{fair.name}}</td>
+        <td>{{fair.location}}</td>
+        <td>{{fair.description}}</td>
+        <td class="td-button"><button *ngIf="!showEditForm" (click)="toggleEditForm(true)">Editar</button></td>
+        <td class="td-button"><button *ngIf="!showEditForm" (click)="deleteFair(fair._id)">Borrar</button></td>
+    </tr>
+</table>
+
+
+
+<!--
+<div>
+
+
+    <div *ngIf="!showEditForm">
+        <h1>Nombre: {{fair.name}}</h1>
+        <h3>Localización: {{fair.location}}</h3>
+        <p>Descripción: {{fair.description}}</p>
+    </div>
+
+
+</div>
+-->
+
+<div *ngIf="showEditForm">
+    <form #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)">     
+        <table>
+            <tr>
+                <td><input type="text" name="name" #name="ngModel" [(ngModel)]="fair.name"></td>
+                <td><input type="text" name="location" #location="ngModel" [(ngModel)]="fair.location"></td>
+                <td><textarea name="description"  #name="ngModel" [(ngModel)]="fair.description"></textarea></td>
+                <td class="td-button"><input type="submit" value="Aceptar"></td>
+                <td class="td-button"><button (click)="toggleEditForm(false)">Cancelar</button></td>
+            </tr>
+        </table>
+    </form>  
+</div>
+
+
+<!--
+<button *ngIf="!showEditForm" (click)="toggleEditForm(true)">Editar</button>
+<button *ngIf="!showEditForm" (click)="deleteFair(fair._id)">Borrar</button>
+-->
+
+
+<!--
+<div *ngIf="showEditForm">
+    <form #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)">    
+        <label for="name">Nombre:</label>
+        <br>
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="fair.name">
+        <br>   
+        <label for="location">Localización:</label>
+        <br>
+        <input type="text" name="location" #location="ngModel" [(ngModel)]="fair.location">
+        <br>          
+        <label for="description">Descripción:</label>
+        <br>
+        <textarea name="description"  #name="ngModel" [(ngModel)]="fair.description" cols="30" rows="10"></textarea>
+        <br>
+        <input type="submit" value="Aceptar">
+    </form> 
+    <button (click)="toggleEditForm(false)">Cancelar</button>   
+</div>
+
+-->

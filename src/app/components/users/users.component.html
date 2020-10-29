@@ -1,0 +1,130 @@
+<app-header></app-header>
+
+<div class="component-body">
+
+    <h1 class="section-title" >Gestión de usuarios</h1>
+
+    <button class="btn-new" (click)="startNewUserModal()">Nuevo usuario</button>
+
+    <ng2-smart-table class="form" [settings]="settings" [source]="users" (custom)="customActions($event)"></ng2-smart-table>
+
+</div>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="createUserModal" (onCloseFinished)="reload()" (onDismissFinished)="resetControllers()">
+            
+    <div class="modal-box">
+       
+        <h2>Nuevo usuario</h2>
+        <p>Indroduzca los datos del nuevo usuario.</p>
+
+        <form [formGroup]="userForm" #profFom="ngForm" (ngSubmit)="userForm.valid && createUser()">
+
+            <label>
+                Name:
+                <input type="text" [formControl]="userForm.controls.name" formControlName="name" required>
+                <small class="form-validation" *ngIf="(userForm.controls.name.dirty || userForm.controls.name.touched) && userForm.controls.name.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Email:
+                <input type="email" [formControl]="userForm.controls.email" formControlName="email" required>
+                <small class="form-validation" *ngIf="(userForm.controls.email.dirty || userForm.controls.email.touched) && userForm.controls.email.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Password:
+                <input type="text" [formControl]="userForm.controls.password" formControlName="password" required>
+                <small class="form-validation" *ngIf="(userForm.controls.password.dirty || userForm.controls.password.touched) && userForm.controls.password.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+            
+            <input type="submit" value="Crear usuario">
+
+        </form>
+
+    </div>
+    
+</ngx-smart-modal>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="updateUserModal" (onCloseFinished)="reload()" (onDismissFinished)="resetControllers()">
+
+    <div class="modal-box">
+
+        <h2>Editar usuario</h2>
+        <p>Indroduzca los datos del usuario que quiera modificar.</p>
+
+        <form [formGroup]="userForm" #profFom="ngForm" (ngSubmit)="userForm.valid && updateUser()">
+
+            <label>
+                Name:
+                <input type="text" [formControl]="userForm.controls.name" formControlName="name" required>
+                <small class="form-validation" *ngIf="(userForm.controls.name.dirty || userForm.controls.name.touched) && userForm.controls.name.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Email:
+                <input type="email" [formControl]="userForm.controls.email" formControlName="email" required>
+                <small class="form-validation" *ngIf="(userForm.controls.email.dirty || userForm.controls.email.touched) && userForm.controls.email.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+      
+            <input type="submit" value="Editar usuario">
+
+        </form>
+
+    </div>
+
+</ngx-smart-modal>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="updatePasswordModal" (onCloseFinished)="reload()" (onDismissFinished)="resetControllers()">
+
+    <div class="modal-box">
+        
+        <h2>Resetear contraseña</h2>
+        <p>Introduzca una nueva contraseña.</p>
+
+        <form [formGroup]="userForm" #profFom="ngForm" (ngSubmit)="userForm.valid && updatePassword()">
+
+            <label>
+                <input type="text" [formControl]="userForm.controls.password" formControlName="password" required>
+                <small class="form-validation" *ngIf="(userForm.controls.password.dirty || userForm.controls.password.touched) && userForm.controls.password.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <input type="submit" value="Cambiar contraseña">
+
+        </form>
+
+    </div>
+
+</ngx-smart-modal>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="deleteUserModal" (onCloseFinished)="reload()" (onDismissFinished)="resetControllers()">
+
+    <div class="modal-box"> 
+
+        <h2>Eliminar usuario</h2>
+        <p>¿Seguro que desea eliminar este usuario?</p>
+        <button class="confirm-modal-btn" (click)="deleteUser(user._id)">Aceptar</button>
+        <button class="cancel-modal-btn" (click)="closeDeleteUserModal()">Cancelar</button>
+
+    </div>
+
+</ngx-smart-modal>
+
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="lastUserModal">
+
+    <div class="modal-box"> 
+
+        <h2>¡Último usuario!</h2>
+        <p>No se puede borrar el último usuario del panel de control.</p>
+
+    </div>
+
+</ngx-smart-modal>
+
+
+
+
+
+
+
+

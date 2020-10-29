@@ -1,0 +1,178 @@
+<app-header></app-header>
+
+<div class="component-body">
+
+    <h1 class="section-title" >Gestión de contactos</h1>
+
+    <button class="btn-new" (click)="startNewContactModal()">Nuevo contacto</button>
+
+    <ng2-smart-table class="form" [settings]="settings" [source]="contacts" (custom)="customActions($event)"></ng2-smart-table>
+
+</div>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="createContactModal" (onCloseFinished)="reload()" (onDismissFinished)="resetControllers()">
+            
+    <div class="modal-box">
+       
+        <h2>Nuevo contacto</h2>
+        <p>Indroduzca los datos del nuevo contacto.</p>
+        
+        <form [formGroup]="contactForm" #profFom="ngForm" (ngSubmit)="contactForm.valid && createContact()">
+
+            <label>
+                Name:
+                <input type="text" [formControl]="contactForm.controls.name" formControlName="name" required>
+                <small class="form-validation" *ngIf="(contactForm.controls.name.dirty || contactForm.controls.name.touched) && contactForm.controls.name.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Email:
+                <input type="email" [formControl]="contactForm.controls.email" formControlName="email" required>
+                <small class="form-validation" *ngIf="(contactForm.controls.email.dirty || contactForm.controls.email.touched) && contactForm.controls.email.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Phone:
+                <input type="number" [formControl]="contactForm.controls.email" formControlName="phone" required>
+                <small class="form-validation" *ngIf="(contactForm.controls.phone.dirty || contactForm.controls.phone.touched) && contactForm.controls.phone.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Agente comercial:
+            </label><br>
+            <ng-select class="custom" name="commercialAgent" [formControl]="contactForm.controls.commercial_agent" formControlName="commercial_agent">
+                    <ng-option *ngFor="let commercialAgent of commercialAgents" [value]="commercialAgent._id">{{commercialAgent.name}}</ng-option>
+            </ng-select><br>
+                        
+            <label>
+                Feria:
+            </label><br>
+            <ng-select class="custom" name="fair" [formControl]="contactForm.controls.commercial_agent" formControlName="fair">
+                    <ng-option *ngFor="let fair of fairs" [value]="fair._id">{{fair.name}}</ng-option>
+            </ng-select>
+            
+            <input type="submit" value="Crear contacto">
+
+        </form>
+
+        <!--
+        <form #projectForm="ngForm" (ngSubmit)="createContact(projectForm)" autocomplete="off">
+            
+            <label for="email">Nombre</label><br>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="newContactName"  required><br>
+
+            <label for="email">Correo electrónico</label><br>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="newContactEmail" required><br>
+            
+            <label for="phone">Teléfono</label><br>
+            <input type="number" name="phone" #phone="ngModel" [(ngModel)]="newContactPhone" required><br>
+
+            <label for="commercialAgent">Agente comercial</label><br>
+            <ng-select class="custom" name="commercialAgent" [(ngModel)]="newContactCommercialAgent">
+                <ng-option *ngFor="let commercialAgent of commercialAgents" [value]="commercialAgent._id">{{commercialAgent.name}}</ng-option>
+            </ng-select><br>
+            
+            <label for="fair">Feria</label><br>
+            <ng-select class="custom" name="fair" [(ngModel)]="newContactFair">
+                <ng-option *ngFor="let fair of fairs" [value]="fair._id">{{fair.name}}</ng-option>
+            </ng-select><br>
+
+            <input type="submit" value="Crear contacto">
+            
+        </form>
+        -->
+
+    </div>
+    
+</ngx-smart-modal>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="updateContactModal" (onCloseFinished)="reload()" (onDismissFinished)="resetControllers()">
+ 
+    <div class="modal-box">
+        
+        <h2>Editar contacto</h2>
+        <p>Indroduzca los datos del contacto que quiera modificar.</p>
+
+        <form [formGroup]="contactForm" #profFom="ngForm" (ngSubmit)="contactForm.valid && createContact()">
+
+            <label>
+                Name:
+                <input type="text" [formControl]="contactForm.controls.name" formControlName="name" required>
+                <small class="form-validation" *ngIf="(contactForm.controls.name.dirty || contactForm.controls.name.touched) && contactForm.controls.name.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Email:
+                <input type="email" [formControl]="contactForm.controls.email" formControlName="email" required>
+                <small class="form-validation" *ngIf="(contactForm.controls.email.dirty || contactForm.controls.email.touched) && contactForm.controls.email.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Phone:
+                <input type="number" [formControl]="contactForm.controls.email" formControlName="phone" required>
+                <small class="form-validation" *ngIf="(contactForm.controls.phone.dirty || contactForm.controls.phone.touched) && contactForm.controls.phone.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Agente comercial:
+            </label><br>
+            <ng-select class="custom" name="commercialAgent" [formControl]="contactForm.controls.commercial_agent" formControlName="commercial_agent">
+                    <ng-option *ngFor="let commercialAgent of commercialAgents" [value]="commercialAgent._id">{{commercialAgent.name}}</ng-option>
+            </ng-select><br>
+                        
+            <label>
+                Feria:
+            </label><br>
+            <ng-select class="custom" name="fair" [formControl]="contactForm.controls.commercial_agent" formControlName="fair">
+                    <ng-option *ngFor="let fair of fairs" [value]="fair._id">{{fair.name}}</ng-option>
+            </ng-select>
+            
+            <input type="submit" value="Crear contacto">
+
+        </form>
+
+
+        
+
+        <!--
+        <form #projectForm="ngForm" (ngSubmit)="updateContact(projectForm)" autocomplete="off">
+            
+            <label for="email">Nombre</label><br>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="contact.name"  required><br>
+
+            <label for="email">Correo electrónico</label><br>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="contact.email" required><br>
+
+            <label for="phone">Teléfono</label><br>
+            <input type="number" name="phone" #phone="ngModel" [(ngModel)]="contact.phone" required><br>
+  
+            <label for="commercialAgent">Agente comercial</label><br>
+            <ng-select class="custom" name="commercialAgent" [(ngModel)]="contact.commercial_agent._id">
+                <ng-option *ngFor="let commercialAgent of commercialAgents" [value]="commercialAgent._id">{{commercialAgent.name}}</ng-option>
+            </ng-select><br>
+            
+            <label for="fair">Feria</label><br>
+            <ng-select class="custom" name="fair" [(ngModel)]="contact.fair._id">
+                <ng-option *ngFor="let fair of fairs" [value]="fair._id">{{fair.name}}</ng-option>
+            </ng-select><br>
+      
+            <input type="submit" value="Editar contacto">
+        </form>
+        -->     
+
+    </div>
+
+</ngx-smart-modal>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="deleteContactModal" (onCloseFinished)="reload()" (onDismissFinished)="resetControllers()">
+
+    <div class="modal-box"> 
+
+        <h2>Eliminar contacto</h2>
+        <p>¿Seguro que desea eliminar este contacto?</p>
+        <button class="confirm-modal-btn" (click)="deleteContact(contact._id)">Aceptar</button>
+        <button class="cancel-modal-btn" (click)="closeDeleteContactModal()">Cancelar</button>
+
+    </div>
+
+</ngx-smart-modal>

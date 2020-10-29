@@ -1,0 +1,32 @@
+<div *ngIf="!showEditForm">
+
+    <h3>Nombre: {{commercial_agent.name}}</h3>
+    <h3>Email: {{commercial_agent.email}}</h3>
+    <p>Password: {{commercial_agent.password}}</p>
+
+</div>
+
+<div *ngIf="showEditForm">
+    
+    <form #projectForm="ngForm" (ngSubmit)="onSubmit()">
+        
+        <label for="name">Nombre:</label><br>
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="commercial_agent.name"><br>
+
+        <label for="email">Email:</label> <br>
+        <input type="text" name="email" #email="ngModel" [(ngModel)]="commercial_agent.email"><br>
+    
+        <label for="password">Contraseña:</label><br>
+        <input type="text" name="password" #password="ngModel" [(ngModel)]="commercial_agent.password"><br>
+        
+        <input type="submit" value="Crear">
+
+    </form>
+
+    <button (click)="toggleEditForm(false)">Cancelar</button>
+
+</div>
+
+<button *ngIf="!showEditForm" (click)="toggleEditForm(true)">Editar</button>
+<button *ngIf="!showEditForm" (click)="deleteCommercialAgent(commercial_agent._id)">Borrar</button>
+

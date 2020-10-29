@@ -1,0 +1,34 @@
+<div *ngIf="!showEditForm">
+    <h3>Nombre: {{contact.name}}</h3>
+    <h3>Email: {{contact.email}}</h3>
+    <p>Teléfono de contacto: {{contact.phone}}</p>
+    <p>Agente comercial: {{contact.commercial_agent}}</p>
+    <p>Feria: {{contact.fair}}</p>
+</div>
+
+<div *ngIf="showEditForm">
+    <form #projectForm="ngForm" (ngSubmit)="onSubmit()">
+
+        <label for="name">Nombre:</label><br>
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="contact.name"><br>
+        
+        <label for="email">Email:</label><br>
+        <input type="text" name="email" #email="ngModel" [(ngModel)]="contact.email"><br>
+        
+        <label for="password">Phone:</label><br>
+        <input type="text" name="phone" #phone="ngModel" [(ngModel)]="contact.phone"><br>
+        
+        <label for="password">Agente Comercial:</label><br>
+        <input type="text" name="commercial-agent" #commercial_agent="ngModel" [(ngModel)]="contact.commercial_agent"><br>
+        
+        <label for="password">Feria:</label><br>
+        <input type="text" name="feria" #feria="ngModel" [(ngModel)]="contact.fair"><br><br>
+      
+        <input type="submit" value="Editar">
+    
+    </form>
+    <button (click)="toggleEditForm(false)">Cancelar</button>   
+</div>
+
+<button *ngIf="!showEditForm" (click)="toggleEditForm(true)">Editar</button>
+<button *ngIf="!showEditForm" (click)="deleteContact(contact._id)">Borrar</button>

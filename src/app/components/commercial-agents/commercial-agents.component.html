@@ -1,0 +1,166 @@
+<app-header></app-header>
+
+<div class="component-body">
+
+    <h1 class="section-title">Gestión de de agentes comerciales</h1>
+
+    <button class="btn-new" (click)="startNewCommercialAgentModal()">Nuevo agente comercial</button>
+
+    <ng2-smart-table class="form" [settings]="settings" [source]="commercial_agents" (custom)="customActions($event)"></ng2-smart-table>
+
+</div>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="createCommercialAgentModal" (onCloseFinished)="reload()" (onDismissFinished)="resetControllers()">
+            
+    <div class="modal-box">
+       
+        <h2>Nuevo agente comercial</h2>
+        <p>Indroduzca los datos del nuevo agente comercial.</p>
+
+        <form [formGroup]="commercialAgentForm" #profFom="ngForm" (ngSubmit)="commercialAgentForm.valid && createCommercialAgent()">
+
+            <label>
+                Name:
+                <input type="text" [formControl]="commercialAgentForm.controls.name" formControlName="name" required>
+                <small class="form-validation" *ngIf="(commercialAgentForm.controls.name.dirty || commercialAgentForm.controls.name.touched) && commercialAgentForm.controls.name.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Email:
+                <input type="email" [formControl]="commercialAgentForm.controls.email" formControlName="email" required>
+                <small class="form-validation" *ngIf="(commercialAgentForm.controls.email.dirty || commercialAgentForm.controls.email.touched) && commercialAgentForm.controls.email.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Password:
+                <input type="text" [formControl]="commercialAgentForm.controls.password" formControlName="password" required>
+                <small class="form-validation" *ngIf="(commercialAgentForm.controls.password.dirty || commercialAgentForm.controls.password.touched) && commercialAgentForm.controls.password.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+            
+            <input type="submit" value="Crear contacto">
+
+        </form>
+
+
+        <!--
+
+        <form #projectForm="ngForm" (ngSubmit)="createCommercialAgent(projectForm)" autocomplete="off">
+
+                       
+            <label for="email">Nombre</label><br>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="newCommercialAgentName"  required><br>
+
+            <label for="email">Correo electrónico</label><br>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="newCommercialAgentEmail" required><br>
+            
+            <label for="password">Contraseña</label><br>
+            <input type="password" name="password" #password="ngModel" [(ngModel)]="newCommercialAgentPassword" required><br>
+            
+            <input type="submit" value="Crear agente comercial">
+            
+        </form>
+
+        -->
+
+    </div>
+    
+</ngx-smart-modal>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="updateCommercialAgentModal" (onCloseFinished)="reload()" (onDismissFinished)="resetControllers()">
+ 
+    <div class="modal-box">
+        
+        <h2>Editar agente comercial</h2>
+        <p>Indroduzca los datos del agente comercial que quiera modificar.</p>
+
+        <form [formGroup]="commercialAgentForm" #profFom="ngForm" (ngSubmit)="commercialAgentForm.valid && updateCommercialAgent()">
+
+            <label>
+                Name:
+                <input type="text" [formControl]="commercialAgentForm.controls.name" formControlName="name" required>
+                <small class="form-validation" *ngIf="(commercialAgentForm.controls.name.dirty || commercialAgentForm.controls.name.touched) && commercialAgentForm.controls.name.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+
+            <label>
+                Email:
+                <input type="email" [formControl]="commercialAgentForm.controls.email" formControlName="email" required>
+                <small class="form-validation" *ngIf="(commercialAgentForm.controls.email.dirty || commercialAgentForm.controls.email.touched) && commercialAgentForm.controls.email.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+            
+            <input type="submit" value="Crear contacto">
+
+        </form>
+        
+
+        <!--
+
+        <form #projectForm="ngForm" (ngSubmit)="updateCommercialAgent(projectForm)" autocomplete="off">
+            
+            <label for="email">Nombre</label><br>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="commercial_agent.name"  required><br>
+
+            <label for="email">Correo electrónico</label><br>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="commercial_agent.email" required><br>
+
+            <input type="submit" value="Editar agente comercial">
+        </form>
+        -->
+
+    </div>
+    
+
+</ngx-smart-modal>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="updatePasswordModal" (onCloseFinished)="reload()" (onDismissFinished)="resetControllers()">
+
+    <div class="modal-box"> 
+
+        <h2>Resetear contraseña</h2>
+        <p>Introduzca una nueva contraseña.</p>
+
+        <form [formGroup]="commercialAgentForm" #profFom="ngForm" (ngSubmit)="commercialAgentForm.valid && updatePassword()">
+
+            <label>
+                Password:
+                <input type="text" [formControl]="commercialAgentForm.controls.password" formControlName="password" required>
+                <small class="form-validation" *ngIf="(commercialAgentForm.controls.password.dirty || commercialAgentForm.controls.password.touched) && commercialAgentForm.controls.password.errors?.required">Este campo es obligatorio*</small>
+            </label><br>
+            
+            <input type="submit" value="Cambiar contraseña">
+
+        </form>
+
+
+        
+        <!--
+
+        <form #projectForm="ngForm" (ngSubmit)="updatePassword(projectForm)" autocomplete="off">
+
+            <h2>Resetear contraseña</h2>
+            <p>Introduzca una nueva contraseña.</p>
+            <input type="text" name="email" #email="ngModel" [(ngModel)]="newPassword" required>
+            <input type="submit" value="Cambiar contraseña">
+
+        </form>
+
+        -->
+
+    </div>
+
+</ngx-smart-modal>
+
+<ngx-smart-modal class="modal-overlay" #myModal identifier="deleteCommercialAgentModal" (onCloseFinished)="reload()">
+
+    <div class="modal-box"> 
+
+        <h2>Eliminar agente comercial</h2>
+        <p>¿Seguro que desea eliminar este agente comercial?</p>
+        <button class="confirm-modal-btn" (click)="deleteCommercialAgent(commercial_agent._id)">Aceptar</button>
+        <button class="cancel-modal-btn" (click)="closeDeleteCommercialAgentModal()">Cancelar</button>
+
+    </div>
+
+</ngx-smart-modal>
+
+
+

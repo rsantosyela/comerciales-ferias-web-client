@@ -1,0 +1,20 @@
+<header>
+    <h1>PANEL DE GESTIÓN</h1>
+    <button class="close-session-button" (click)="startUserLogOutModal()">CERRAR SESIÓN</button>
+</header>
+
+<nav class ="header-nav">
+  <a [routerLink]="['/usuarios']" [routerLinkActive]="['actived']">Usuarios</a>
+  <a [routerLink]="['/agentes-comerciales']"[routerLinkActive]="['actived']">Agentes comerciales</a>
+  <a [routerLink]="['/contactos']" [routerLinkActive]="['actived']">Contactos</a>
+  <a [routerLink]="['/ferias']" [routerLinkActive]="['actived']">Ferias</a>
+</nav>
+  
+<ngx-smart-modal class="modal-overlay" #myModal identifier="userLogOutModal">
+  <div class="modal-box">  
+        <h2>Cerrar sesión</h2>
+        <p>¿Seguro que desea cerrar la sesión?</p>
+        <button class="confirm-modal-btn" (click)="userLogOut()">Aceptar</button>
+        <button class="cancel-modal-btn" (click)="closeUserLogOutModal()">Cancelar</button>
+  </div>
+</ngx-smart-modal>

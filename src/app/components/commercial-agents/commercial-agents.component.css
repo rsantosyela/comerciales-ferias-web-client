@@ -1,0 +1,21 @@
+:host::ng-deep ng2-smart-table tbody > tr > td,
+:host::ng-deep ng2-smart-table tbody > tr > th {
+ font-size: 15px !important;
+}
+
+:host::ng-deep ng2-smart-table tbody{
+    border-top: 1px solid cornflowerblue;
+}
+
+:host::ng-deep ng2-smart-table tbody{
+    border-radius: 50px;
+}
+
+:host::ng-deep ng2-smart-table td{
+    border-bottom: 1px solid cornflowerblue;
+}
+
+:host::ng-deep ng2-smart-table td:nth-child(3){
+    text-align: right;
+}
+
